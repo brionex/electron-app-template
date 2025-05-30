@@ -1,5 +1,9 @@
 /// <reference types="vite/client" />
 
-interface Window {
-  api: import('./../preload/api').Api
+import type { Api } from './../shared/api'
+
+declare global {
+  interface Window {
+    api: Api
+  }
 }

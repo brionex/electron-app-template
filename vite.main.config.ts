@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   resolve: {
     alias: {
-      '@m': 'src/main'
+      '@/m': 'src/main'
     }
   }
 })

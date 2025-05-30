@@ -1,7 +1,13 @@
+import { join } from 'node:path'
+import started from 'electron-squirrel-startup'
 import { app, shell, BrowserWindow } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
-import { join } from 'path'
-import { ipcRegister } from '@m/ipc-register.ts'
+import { ipcRegister } from '@/m/ipc-register.ts'
+
+// Handle creating/removing shortcuts on Windows when installing/uninstalling.
+if (started) {
+  app.quit()
+}
 
 function createWindow(): void {
   // Create the browser window.
@@ -11,7 +17,7 @@ function createWindow(): void {
     show: false,
     autoHideMenuBar: true,
     webPreferences: {
-      preload: join(__dirname, '_preload.js'),
+      preload: join(__dirname, 'preload.js'),
       contextIsolation: true,
       sandbox: true,
       nodeIntegration: false

@@ -14,8 +14,9 @@
     "lib": ["ES2020", "DOM"],
     "baseUrl": ".",
     "paths": {
-      "@m/*": ["src/main/*"],
-      "@p/*": ["src/preload/*"]
+      "@/m/*": ["src/main/*"],
+      "@/p/*": ["src/preload/*"],
+      "@/shared/*": ["src/shared/*"]
     }
   },
   "include": ["src/main/**/*", "src/preload/**/*", "forge.env.d.ts"],

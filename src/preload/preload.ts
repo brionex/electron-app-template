@@ -1,7 +1,6 @@
-import type { Api } from '@p/api'
 import { contextBridge, ipcRenderer } from 'electron'
 
-const api: Api = {
+const api = {
   // Recibe datos del renderer y los envía al main
   ping: (data: string) => {
     ipcRenderer.send('ping', data)
