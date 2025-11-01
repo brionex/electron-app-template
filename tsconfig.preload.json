@@ -8,12 +8,12 @@
     "forceConsistentCasingInFileNames": true,
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "lib": ["ES2020"],
+    "lib": ["ES2020", "DOM"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/main/*"],
+      "@/*": ["src/preload/*"],
       "@shared/*": ["src/shared/*"]
     }
   },
-  "include": ["src/main/**/*", "forge.env.d.ts"]
+  "include": ["src/preload/**/*", "forge.env.d.ts"]
 }

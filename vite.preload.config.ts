@@ -4,7 +4,8 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   resolve: {
     alias: {
-      '@/p': 'src/preload'
+      '@': 'src/preload',
+      '@shared': 'src/shared'
     }
   }
 })

@@ -15,7 +15,7 @@ export default [
     languageOptions: {
       parser,
       parserOptions: {
-        project: ['./tsconfig.main.json'],
+        project: ['./tsconfig.main.json', './tsconfig.preload.json'],
         sourceType: 'module'
       },
       globals: globals.node
