@@ -14,7 +14,7 @@
     "multiplatform"
   ],
   "license": "MIT",
-  "author": "brioneq",
+  "author": "brionex",
   "main": ".vite/build/main.js",
   "scripts": {
     "dev": "electron-forge start",
@@ -43,6 +43,7 @@
     "@electron/fuses": "1.8.0",
     "@tailwindcss/postcss": "4.1.7",
     "@types/electron-squirrel-startup": "1.0.2",
+    "@types/eslint": "^9.6.1",
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
     "@typescript-eslint/eslint-plugin": "6.20.0",
