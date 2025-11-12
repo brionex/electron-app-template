@@ -1,9 +1,11 @@
 /// <reference types="vite/client" />
 
-import type { Api } from './../shared/api'
+import type { InvokeMainMethod } from '@shared/types/api.type'
 
 declare global {
   interface Window {
-    api: Api
+    invoke: {
+      api: InvokeMainMethod
+    }
   }
 }
