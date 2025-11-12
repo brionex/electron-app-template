@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import path from 'node:path'
 
 export default defineConfig({
   root: 'src/renderer',
@@ -10,7 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': '',
-      '@shared': '../shared'
+      '@shared': path.resolve(__dirname, 'src/shared')
     }
   }
 })
