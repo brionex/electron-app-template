@@ -1,11 +1,8 @@
-import { ping, pong } from '@/services/ping-pong.ts'
 import { useEffect } from 'react'
+import { alertTest, pingTest, asyncPingTest, logPlatform } from '@/services'
+import { Button } from '@/components/Button'
 
-const App = () => {
-  useEffect(() => {
-    pong()
-  }, [])
-
+export const App = () => {
   return (
     <main>
       <div className="fixed top-0 left-0 inset-0 z-0">
@@ -16,26 +13,15 @@ const App = () => {
       <section className="relative grid place-content-center h-dvh text-center gap-10">
         <h1 className="text-4xl font-bold">Electron App</h1>
         <p className="text-lg">
-          ElectronJs + Vite + React + TailwindCSS + Typescript
+          ElectronJs + Vite + Typescript + React + TailwindCSS
         </p>
         <div className="flex gap-4 justify-center">
-          <button
-            className="font-bold py-2 px-5 rounded-2xl bg-blue-900 hover:bg-blue-700 cursor-pointer"
-            onClick={() => alert('función alert()')}
-          >
-            Alerta
-          </button>
-
-          <button
-            className="font-bold py-2 px-5 rounded-2xl bg-blue-900 hover:bg-blue-700 cursor-pointer"
-            onClick={ping}
-          >
-            Ping
-          </button>
+          <Button fn={alertTest}>Alerta</Button>
+          <Button fn={pingTest}>Ping</Button>
+          <Button fn={asyncPingTest}>Async Ping</Button>
+          <Button fn={logPlatform}>Log Platform</Button>
         </div>
       </section>
     </main>
   )
 }
-
-export default App
