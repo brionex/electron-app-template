@@ -35,54 +35,66 @@ npm install
 
 ## 💻 Comandos disponibles
 
-| Comando            | Descripción                                             |
-| ------------------ | ------------------------------------------------------- |
-| `npm run dev`      | Inicia la app en modo desarrollo con hot reload.        |
-| `npm run package`  | Empaqueta la app sin instalador.                        |
-| `npm run make`     | Empaqueta la app en formato instalable para tu sistema. |
-| `npm run publish`  | Publica la app (requiere configuración previa).         |
-| `npm run lint`     | Ejecuta ESLint para revisar errores y buenas prácticas. |
-| `npm run lint:fix` | Repara automáticamente errores corregibles de lint.     |
+| Comando            | Descripción                                                                  |
+| ------------------ | ---------------------------------------------------------------------------- |
+| `npm run dev`      | Inicia la aplicación en modo desarrollo con recarga en caliente.             |
+| `npm run package`  | Empaqueta la aplicación sin generar un instalador.                           |
+| `npm run make`     | Genera una versión instalable de la aplicación para tu sistema operativo.    |
+| `npm run app`      | Ejecuta la aplicación empaquetada para probarla en un entorno de producción. |
+| `npm run publish`  | Publica la aplicación (requiere configuración previa).                       |
+| `npm run lint`     | Ejecuta ESLint para detectar errores y aplicar buenas prácticas de código.   |
+| `npm run lint:fix` | Corrige automáticamente los errores de lint que pueden resolverse.           |
 
 ---
 
 ## 🧠 Estructura del proyecto
 
 ```bash
-📁 src/                        # Código fuente principal
+📁 src/                          # Código fuente de la aplicación
 │
-├── 📁 main/                  # Proceso principal de Electron
-│   ├── _main.ts             # Punto de entrada principal de Electron
-│   └── ipc-register.ts      # Registro de canales IPC entre main y preload
+├── 📁 main/                    # Proceso principal de Electron
+│   ├── main.ts                # Punto de entrada del proceso main
+│   ├── 📁 config/             # Configuración de la aplicación y ventanas
+│   │   ├── setup.ts           # Inicialización general de Electron
+│   │   └── window.ts          # Configuración y creación de la ventana principal
+│   ├── 📁 ipc/                # Canales IPC (main ↔ renderer)
+│   │   └── api.ipc.ts         # Registro y manejo de IPC handlers
+│   ├── 📁 services/           # Servicios del proceso main
+│   │   └── ping.ts            # Servicio de ejemplo (ping)
+│   └── 📁 lib/                # Lógica compartida del proceso main
+│       └── api.ts
 │
-├── 📁 preload/              # Proceso preload (puente seguro entre main y renderer)
-│   ├── _preload.ts          # Punto de entrada del preload
-│   └── api.d.ts             # Tipado para las funciones expuestas por preload
+├── 📁 preload/                # Preload (puente seguro entre main y renderer)
+│   └── _preload.ts            # Exposición controlada de APIs al renderer
 │
-└── 📁 renderer/             # Interfaz de usuario (React + Vite)
-    ├── index.html           # HTML base para Vite
-    ├── main.tsx             # Entrada de la app React
-    ├── vite-env.d.ts        # Tipado de Vite
-    ├── 📁views/             # Componentes de vista principales (como App.tsx)
-    │   └── App.tsx
-    ├── 📁styles/            # Archivos de estilos (Tailwind + globales)
-    │   └── global.css
-    └── 📁services/          # Servicios como lógica compartida o APIs IPC
-        └── ping-pong.ts
-
-📁 resources/                # Recursos estáticos (íconos, etc.)
+├── 📁 renderer/               # Interfaz de usuario (Vite + React)
+│   ├── index.html             # HTML base
+│   ├── main.tsx               # Entrada principal de React
+│   ├── 📁 views/              # Vistas principales
+│   │   └── App.tsx            # Componente raíz
+│   ├── 📁 components/         # Componentes reutilizables
+│   │   └── Button.tsx
+│   ├── 📁 services/           # Servicios del renderer (IPC / lógica cliente)
+│   │   └── index.ts
+│   └── 📁 styles/             # Estilos globales
+│       └── global.css
+│
+├── 📁 shared/                 # Código compartido entre procesos
+│   └── 📁 types/
+│       └── api.type.ts        # Tipos compartidos (IPC / contratos)
+│
+📁 resources/                  # Recursos estáticos
 ├── icon.ico
 └── icon.png
 
-forge.config.ts             # Configuración de Electron Forge
-vite.main.config.ts         # Configuración de Vite para el proceso main
-vite.preload.config.ts      # Configuración de Vite para el proceso preload
-vite.renderer.config.ts     # Configuración de Vite para el renderer
-package.json                # Dependencias y scripts del proyecto
-tsconfig.json               # Configuración base de TypeScript
-tsconfig.main.json          # TS config específica para main
-tsconfig.renderer.json      # TS config específica para renderer
-eslint.config.js            # Configuración de ESLint para linting del proyecto
+📁 docs/                       # Documentación y assets
+└── banner.svg
+
+forge.config.ts               # Configuración de Electron Forge
+package.json                  # Dependencias y scripts
+eslint.config.js              # Configuración de ESLint
+tsconfig.json                 # Configuración base de TypeScript
+vite.*.config.ts              # Configuración de Vite por proceso
 ```
 
 ## 📤 Publicación
@@ -101,3 +113,5 @@ Este proyecto está licenciado bajo la licencia [MIT](LICENSE).
 ## 🙌 Créditos
 
 Este template fue creado para facilitar el desarrollo de aplicaciones de escritorio modernas, combinando lo mejor del ecosistema web y Electron.
+
+Si tienes ideas de mejora, detectas errores o deseas proponer nuevas funcionalidades, no dudes en abrir un issue o enviar un mensaje a través de GitHub. Toda contribución es bienvenida y ayuda a mejorar el proyecto.

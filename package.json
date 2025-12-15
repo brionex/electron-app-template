@@ -9,7 +9,6 @@
     "react",
     "tailwindcss",
     "typescript",
-    "sqlite",
     "desktop-app",
     "multiplatform"
   ],
